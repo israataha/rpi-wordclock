@@ -1,10 +1,5 @@
 import datetime
 
-#Get the time
-now = datetime.datetime.now()
-hour = now.hour % 12 + (1 if now.minute/5 > 7 else 0)
-minute = round(now.minute/5)
-
 #Prefix
 prefix = "IT IS"
 
@@ -23,7 +18,15 @@ minutes = ["", "FIVE PAST", "TEN PAST", "QUARTER PAST", \
 #Suffix
 oclock = "OCLOCK"
 
-print(prefix)
-print(minutes[minute])
-print(hours[hour])
-print(oclock if minute == 0 else "")
+while True
+    #Get the time
+    now = datetime.datetime.now()
+    hour = now.hour % 12 + (1 if now.minute/5 > 7 else 0)
+    minute = round(now.minute/5)
+
+    print(prefix)
+    print(minutes[minute])
+    print(hours[hour])
+    print(oclock if minute == 0 else "")
+
+    time.sleep(60)
