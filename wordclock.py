@@ -1,4 +1,5 @@
 import wordclock_display as wcd
+import time_as_words as taw
 
 class wordclock
     def __init__(self):
@@ -9,7 +10,7 @@ class wordclock
     def run(self):
         # Run the wordclock forever
         while True:
-            wct.run(self.wcd)
+            taw.run(self.wcd)
 
 if __name__ == '__main__':
     word_clock = wordclock()
