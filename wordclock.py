@@ -1,32 +1,16 @@
-import datetime
+import wordclock_display as wcd
 
-#Prefix
-prefix = "IT IS"
+class wordclock
+    def __init__(self):
+        # Create object to display any content on the wordclock display
+        # Its implementation depends on your (individual) wordclock layout/wiring
+        self.wcd = wcd.wordclock_display(self.config)
 
-#Hours
-hours = ["TWELVE", "ONE", "TWO", 
-         "THREE", "FOUR", "FIVE", \
-         "SIX", "SEVEN", "EIGHT" ,\
-         "NINE", "TEN", "ELEVEN"]
+    def run(self):
+        # Run the wordclock forever
+        while True:
+            wct.run(self.wcd)
 
-#Minutes
-minutes = ["", "FIVE PAST", "TEN PAST", "QUARTER PAST", \
-           "TWENTY PAST", "TWENTY FIVE PAST", "HALF PAST", \
-           "TWENTY FIVE TO", "TWENTY TO", "QUARTER TO", \
-           "TEN TO", "FIVE TO"]
-
-#Suffix
-oclock = "OCLOCK"
-
-while True
-    #Get the time
-    now = datetime.datetime.now()
-    hour = now.hour % 12 + (1 if now.minute/5 > 7 else 0)
-    minute = round(now.minute/5)
-
-    print(prefix)
-    print(minutes[minute])
-    print(hours[hour])
-    print(oclock if minute == 0 else "")
-
-    time.sleep(60)
+if __name__ == '__main__':
+    word_clock = wordclock()
+    word_clock.run()
