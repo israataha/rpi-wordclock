@@ -10,7 +10,7 @@ layout = ["ITMISBATENH",
           "SEVENTWELVE",
           "TENSEOCLOCK"]
           
-class wiring
+class wiring:
     '''
     A class, holding all information of the wordclock's layout to map given
     timestamps, 2d-coordinates to the corresponding LEDs (corresponding to
@@ -31,33 +31,33 @@ class wiring
 
         self.wcl = tahas_wiring(self.WCA_WIDTH, self.WCA_HEIGHT)
 
-        def setColorBy1DCoordinates(self, strip, ledCoordinates, color):
-            '''
-            Linear mapping from top-left to bottom right
-            '''
-            for i in ledCoordinates:
-                self.setColorBy2DCoordinates(strip, i%self.WCA_WIDTH, i/self.WCA_WIDTH, color)
+    def setColorBy1DCoordinates(self, strip, ledCoordinates, color):
+        '''
+        Linear mapping from top-left to bottom right
+        '''
+        for i in ledCoordinates:
+            self.setColorBy2DCoordinates(strip, i%self.WCA_WIDTH, i/self.WCA_WIDTH, color)
 
-        def setColorBy2DCoordinates(self, strip, x, y, color):
-            '''
-            Mapping coordinates to the wordclocks display
-            Needs hardware/wiring dependent implementation
-            Final range:
-                (0,0): top-left
-                (self.WCA_WIDTH-1, self.WCA_HEIGHT-1): bottom-right
-            '''
-            strip.setPixelColor(self.wcl.getStripIndexFrom2D(x,y), color)
-        
-        def getStripIndexFrom2D(self, x,y):
-            return self.wcl.getStripIndexFrom2D(x,y)
+    def setColorBy2DCoordinates(self, strip, x, y, color):
+        '''
+        Mapping coordinates to the wordclocks display
+        Needs hardware/wiring dependent implementation
+        Final range:
+            (0,0): top-left
+            (self.WCA_WIDTH-1, self.WCA_HEIGHT-1): bottom-right
+        '''
+        strip.setPixelColor(self.wcl.getStripIndexFrom2D(x,y), color)
+    
+    def getStripIndexFrom2D(self, x,y):
+        return self.wcl.getStripIndexFrom2D(x,y)
 
-        def mapMinutes(self, min):
-            '''
-            Access minutes (1,2,3,4)
-            '''
-            return self.wcl.mapMinutes(min)
+    def mapMinutes(self, min):
+        '''
+        Access minutes (1,2,3,4)
+        '''
+        return self.wcl.mapMinutes(min)
 
-class tahas_wiring 
+class tahas_wiring:
     '''
     A class, holding all information of the wordclock's layout to map given
     timestamps, 2d-coordinates to the corresponding LEDs (corresponding to

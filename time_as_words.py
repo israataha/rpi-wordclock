@@ -94,7 +94,7 @@ class time_as_words():
                 wcd.setColorToAll(self.bg_color, includeMinutes=True)
                 # Returns indices, which represent the current time, when beeing illuminated
                 taw_indices = self.get_time(now)
-                if self.typewriter and now.minute%5 == 0:
+                if now.minute%5 == 0:
                     for i in range(len(taw_indices)):
                         wcd.setColorBy1DCoordinates(wcd.strip, taw_indices[0:i+1], self.word_color)
                         wcd.show()

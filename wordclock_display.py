@@ -1,3 +1,4 @@
+from neopixel import *
 import time
 import wiring
 import wordclock_colors as wcc
@@ -7,11 +8,11 @@ class wordclock_display:
     Class to display content on the wordclock display
     '''
 
-    def __init__(self, config):
+    def __init__(self):
         # Get the wordclocks wiring-layout
         self.wcl = wiring.wiring()
 
-        brightness = 255
+        brightness = 20
         
         try:
             self.strip = Adafruit_NeoPixel(self.wcl.LED_COUNT, self.wcl.LED_PIN, self.wcl.LED_FREQ_HZ, self.wcl.LED_DMA, self.wcl.LED_INVERT, brightness)
