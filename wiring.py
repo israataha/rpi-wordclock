@@ -1,14 +1,4 @@
-# Word Clock Layout 12x12
-layout = ["ITMISBATENH",
-          "ACQUARTERDC",
-          "TWENTYFIVEX",
-          "HALFBTENFTO",
-          "PASTERUNINE",
-          "ONESIXTHREE",
-          "FOURFIVETWO",
-          "EIGHTELEVEN",
-          "SEVENTWELVE",
-          "TENSEOCLOCK"]
+
           
 class wiring:
     '''

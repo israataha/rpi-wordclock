@@ -2,6 +2,20 @@ import time
 import datetime
 import wordclock_colors as wcc
 
+# Word Clock Layout 12x12
+layout = ["ITMISBALTENH", # 0-11
+          "HALFXQUARTER", # 12-23
+          "TWENTYJFIVEQ", # 24-35
+          "HAPPYGPASTZY", # 36-47
+          "TODLBIRTHDAY", # 48-59
+          "VELEVENXONEU", # 60-71
+          "FIVEKSEVENDE", # 72-83
+          "TWELVEFCTENM", # 84-95
+          "LFOURQEIGHTN", # 96-107
+          "TWOSIXTHREEA", # 108-119
+          "NINEMIDNIGHT", # 120-131
+          "JOCLOCKRNOON"] # 132-143
+
 class time_as_words():
     '''
     This class returns a given time as a range of LED-indices.
@@ -12,55 +26,55 @@ class time_as_words():
         self.prefix = range(0,2) +  range(3,5) # -> IT IS
         self.minutes=[[], \
             # -> FIVE PAST
-            range(28,32) + range(44,48), \
+            range(31,35) + range(42,46), \
             # -> TEN PAST
-            range(38,41) + range(44,48), \
+            range(8,11) + range(42,46), \
             # -> QUARTER PAST
-            range(13,20) + range(44,48), \
+            range(17,24) + range(42,46), \
             # -> TWENTY PAST
-            range(22,28) + range(44,48), \
+            range(24,30) + range(42,46), \
             # -> TWENTYFIVE PAST
-            range(22,32) + range(44,48), \
+            range(24,30) + range(31,35) + range(42,46), \
             # -> HALF PAST
-            range(33,37) + range(44,48), \
+            range(12,16) + range(42,46), \
             # -> TWENTYFIVE TO
-            range(22,32) + range(42,44), \
+            range(24,30) + range(31,35) + range(48,50), \
             # -> TWENTY TO
-            range(22,28) + range(42,44), \
+            range(24,30) + range(48,50), \
             # -> QUARTER TO
-            range(13,20) + range(42,44), \
+            range(17,24) + range(48,50), \
             # -> TEN TO
-            range(38,41) + range(42,44), \
+            range(8,11) + range(48,50), \
             # -> FIVE TO
-            range(28,32) + range(42,44) ]
-            # -> TWELVE
-        self.hours= [range(93,99), \
+            range(31,35) + range(48,50) ]
+            # -> MIDNIGHT
+        self.hours= [range(124,132), \
             # -> ONE
-            range(55,58), \
+            range(68,71), \
             # -> TWO
-            range(74,77), \
+            range(108,111), \
             # -> THREE
-            range(61,66), \
+            range(114,119), \
             # -> FOUR
-            range(66,70), \
+            range(97,101), \
             # -> FIVE
-            range(70,74), \
+            range(72,76), \
             # -> SIX
-            range(58,61), \
+            range(111,114), \
             # -> SEVEN
-            range(88,93), \
-            # -> EIGHT
             range(77,82), \
+            # -> EIGHT
+            range(102,107), \
             # -> NINE
-            range(51,55), \
+            range(120,124), \
             # -> TEN
-            range(99,102),\
+            range(92,95),\
             # -> ELEVEN
-            range(82,88), \
-            # -> TWELVE
-            range(93,99)]
+            range(61,67), \
+            # -> NOON
+            range(140,144)]
         # -> OCLOCK
-        self.full_hour= range(104,110)
+        self.full_hour= range(133,139)
 
         self.bg_color     = wcc.BLACK  # default background color
         self.word_color   = wcc.WWHITE # default word color
@@ -92,7 +106,7 @@ class time_as_words():
             if prev_min < now.minute:
                 # Set background color
                 wcd.setColorToAll(self.bg_color, includeMinutes=True)
-                # Returns indices, which represent the current time, when beeing illuminated
+                # Returns indices, which represent the current time, when being illuminated
                 taw_indices = self.get_time(now)
                 if now.minute%5 == 0:
                     for i in range(len(taw_indices)):
