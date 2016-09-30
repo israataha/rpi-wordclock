@@ -31,10 +31,10 @@ layout = ["ITMISBALTENH", # 0-11
           "NINEMIDNIGHT", # 120-131
           "JOCLOCKRNOON"] # 132-143
 
-#Prefix
+
 prefix = list(range(0,2)) + list(range(3,5)) # -> IT IS
 
-#Minutes
+
 minutes=[[], \
             # -> FIVE PAST
             list(range(31,35)) + list(range(42,46)), \
@@ -59,7 +59,7 @@ minutes=[[], \
             # -> FIVE TO
             list(range(31,35)) + list(range(48,50)) ]
 
-#Hours
+
 hours= [range(124,132), \
             # -> ONE
             range(68,71), \
@@ -85,15 +85,35 @@ hours= [range(124,132), \
             range(61,67), \
             # -> NOON
             range(140,144)]
-
-#OCLOCK
 full_hour= range(133,139)
 
+happy_birthday = list(range(36,41)) + list(range(52,60))
+
+birthdays = { 
+    'ISRAA': date(1986, 3, 24), 
+    'ALI': date(2014, 9, 30), 
+    'AHMED': date(1983, 11, 17),
+    'TEST': datetime.date.today()}
+
 prev_min = -1
+prev_date = -1
+
+show_birthday_message = False
+birthday_name = ''
 
 while True:
     # Get current time
     now = datetime.datetime.now()
+    date = datetime.date.today()
+
+    if prev_date < date:
+            prev_date = date
+            show_birthday_message = False
+            for k, v in birthdays.items():
+                    if (v.month == date.month) and (v.day == date.day):
+                        show_birthday_message = True
+                        birthday_name = k
+
     # Check, if a minute has passed (to render the new time)
     if prev_min < now.minute:
         hour = now.hour%12 + (1 if now.minute/5 >= 7 else 0)
@@ -102,18 +122,20 @@ while True:
                 minutes[minute] + \
                 list(hours[hour]) + \
                 (list(full_hour) if (minute == 0) else [])
-        
-        print(hour)
-        print(minute)
+
         print(taw_indices)
         
         #Set all LEDs back to black
         for i in range(LED_COUNT):
                 strip.setPixelColor(i, bg_color)
 
-        for i in range(len(taw_indices)):
-                strip.setPixelColor(taw_indices[i], word_color)
-                strip.show()
-                #time.sleep(1.0/self.typewriter_speed)
+        if now.minute == 0 and show_birthday_message:
+                taw_indices = happy_birthday
+                print('HAPPY BIRTHDAY ' + name)
+        else
+                for i in range(len(taw_indices)):
+                        strip.setPixelColor(taw_indices[i], word_color)
+                        strip.show()
+                        #time.sleep(1.0/self.typewriter_speed)
 
         prev_min = -1 if now.minute == 59 else now.minute
